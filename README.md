@@ -15,7 +15,8 @@ And then execute:
 $ bundle
 Or install it yourself as:
 
-$ gem install yawdsale
+$ gem install 'yawdsale'
+
 Usage
 Simply enter the command below to run the application:
 
