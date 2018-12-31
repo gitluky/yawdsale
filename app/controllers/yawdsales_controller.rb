@@ -1,0 +1,3 @@
+class YawdsalesController < ApplicationController
+
+end
