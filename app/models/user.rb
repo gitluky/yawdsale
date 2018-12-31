@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
   has_many :yawdsales
-  has_many :images, :through :yawdsales
-  
+  has_many :photos, through: :yawdsales
+
 end
