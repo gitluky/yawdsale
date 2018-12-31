@@ -1,0 +1,41 @@
+Requirements:
+
+Sign Up
+- User should be able to sign up for an account
+  - Provide First Name, Last Name, Date of Birth, Email and Password
+  - Validate for unique Email Address
+    - If Email Address exists, flash a message with a link to Log In
+  - Validate Date of Birth for 18 years and up
+  - a new folder will be created for the user
+  - Log the user in after sign up
+
+Login
+- User should be taken to the index page when logged in
+
+Index Page
+- contains a link to profile page
+- contains a form to input search location for yawdsales
+- after clicking the 'Search' button, the user should be taken to yawdsale index page
+
+Yawdsale Index
+- displays google map with of nearby yawdsales
+- displays a list of the yawdsales
+- user should be able to click on the yawdsale to get to the show page
+
+Yawdsale Show
+- users will see the details and images of the selected yawdsales
+- users will be able to edit their own yawdsales only
+- users will be able to delete their own yawdsales
+
+Yawdsale New
+- users will be able to create a new Yawdsale
+  - provide a title, description, street, city, state, zip
+  - user should be able to upload photos
+
+  user has many yawdsales
+  user has many pictures through yawdsales
+
+  yawdsale belongs to user
+  yawdsale has many pictures
+
+  picture belongs to yawdsale
