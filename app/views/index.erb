@@ -1,1 +1,18 @@
-<h1>Index Page</h1>
+<img src="https://previews.123rf.com/images/deylana/deylana1712/deylana171200007/91172833-vector-line-style-illustration-garage-sale-yard-sale-flyer-template-design-element-for-posters-banne.jpg" style="width: 400px;">
+<br><br><h1>Find a Yawdsale near you:</h1><br>
+  <% if session[:id] %>
+    <p>Search by any of the parameters: </p>
+    <form action="/search" method="post">
+      <label for=""></label>
+      <input type="text" name="street_address"></input>
+      <label for=""></label>
+      <input type="text" name="City"></input>
+      <label for=""></label>
+      <input type="text" name="State"></input>
+      <label for=""></label>
+      <input type="text" name="Zipcode"></input>
+      <input type="button" value="Search">Search</input>
+    </form>
+  <% else %>
+    <h3><a href="/signup">Sign Up</a> or <a href="/login">Log In</a>
+  <% end %>
