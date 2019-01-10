@@ -10,30 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_034514) do
-
-  create_table "photos", force: :cascade do |t|
-    t.string "filename"
-    t.integer "yawdsale_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email_address"
-    t.string "password_digest"
-  end
-
-  create_table "yawdsales", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.integer "user_id"
-    t.string "street_address"
-    t.string "city"
-    t.string "state"
-    t.integer "zipcode"
-    t.float "latitude"
-    t.float "longitute"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end

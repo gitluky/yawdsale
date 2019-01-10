@@ -5,6 +5,12 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.string :email_address
       t.string :password_digest
+      t.string :street_address
+      t.string :city
+      t.string :state
+      t.integer :zipcode
+      t.float :latitude
+      t.float :longitute
     end
   end
 end
