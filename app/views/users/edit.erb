@@ -1,0 +1,21 @@
+<h1>Update Profile</h1>
+<form action="/users" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch"></input>
+  <label for="email_address">Email Address: </label>
+  <input type="text" name="email_address" id="email_address" placeholder="<%= @user.email_address %>"></input>
+  <label for="password">Password: </label>
+  <input type="password" name="password" id="password"></input>
+  <label for="first_name">First Name: </label>
+  <input type="text" name="first_name" id="first_name" placeholder="<%= @user.first_name %>"></input>
+  <label for="last_name">Last Name: </label>
+  <input type="text" name="last_name" id="last_name" placeholder="<%= @user.last_name %>"></input>
+  <label for="street_address">Street Address: </label>
+  <input type="text" name="street_address" id="street_address" placeholder="<%= @user.street_address %>"></input>
+  <label for="City">City: </label>
+  <input type="text" name="city" id="city" <%= @user.city %></input>
+  <label for="state">State: </label>
+  <input type="text" name="state" id="state" <%= @user.state %>></input>
+  <label for="zipcode">Zipcode: </label>
+  <input type="text" name="zipcode" id="zipcode" <%= @user.zipcode %>></input>
+  <input type="submit" value="Update Profile"></input>
+</form>
