@@ -1,19 +1,20 @@
 <img src="https://previews.123rf.com/images/deylana/deylana1712/deylana171200007/91172833-vector-line-style-illustration-garage-sale-yard-sale-flyer-template-design-element-for-posters-banne.jpg" style="width: 400px;">
 <br><br><h1>Find a Yawdsale near you:</h1><br>
-  <% if Helpers.logged_in?(session) %>
-    <h3>Hi, <%= Helpers.current_user(session).first_name %></h3>
-    <p>Search by any of the parsameters: </p>
-    <form action="/search" method="post">
-      <label for=""></label>
-      <input type="text" name="street_address"></input>
-      <label for=""></label>
-      <input type="text" name="City"></input>
-      <label for=""></label>
-      <input type="text" name="State"></input>
-      <label for=""></label>
-      <input type="text" name="Zipcode"></input>
-      <input type="button" value="Search">Search</input>
-    </form>
-  <% else %>
-    <h3><a href="/signup">Sign Up</a> or <a href="/login">Log In</a>
-  <% end %>
+
+      <% if Helpers.logged_in?(session) %>
+        <h2>Hi, <%= Helpers.current_user(session).first_name %></h2><br><br>
+        <p>Search by: </p>
+        <form class="form-block mx-auto" action="/search" method="post">
+          <label for="street_address">Street Address: </label>
+          <input type="text" name="street_address" id="street_address"></input><br><br>
+          <label for="city">City: </label>
+          <input type="text" name="City" id="city"></input><br><br>
+          <label for="state">State: </label>
+          <input type="text" name="State" id="state"></input><br><br>
+          <label for="zipcode">Zipcode: </label>
+          <input type="text" name="Zipcode" id="zipcode"></input><br><br>
+          <input type="button" value="Search"></input>
+        </form>
+      <% else %>
+        <h3><a href="/signup">Sign Up</a> or <a href="/login">Log In</a>
+      <% end %>

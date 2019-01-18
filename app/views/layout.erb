@@ -18,18 +18,24 @@
 
 
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-success">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="mx-auto">
-          <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="yawdsale.png" style="width:150px;"></a>
+          <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="yawdsale3.png" style="width:200px;"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="<%= @user? '/users/@user.id': '/' %>">My Account<span class="sr-only">(current)</span></a>
-            </li>
+            <% if @user %>
+              <li class="nav-item active">
+                <a class="nav-link text-light" href="/users/<%= @user.id %>"><%= @user.email_address %><span class="sr-only">(current)</span></a>
+              </li>
+            <% else %>
+              <li class="nav-item active">
+                <a class="nav-link text-light" href="/login">Log In<span class="sr-only">(current)</span></a>
+              </li>
+            <% end %>
             <li class="nav-item">
               <a class="nav-link text-light" href="#">Link</a>
             </li>
@@ -38,10 +44,10 @@
                 Dropdown
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-light" href="#">Action</a>
-                <a class="dropdown-item text-light" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-light" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li>
             <li class="nav-item">
@@ -49,8 +55,8 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 text-light" type="submit">Search</button>
+            <input class="form-control ml-auto" type="search" placeholder="Find Yawdsales near..." aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0 text-light mr-auto" type="submit">Search</button>
           </form>
         </div>
       </nav>
