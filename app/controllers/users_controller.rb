@@ -47,7 +47,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id' do
-
+    @current_user = Helpers.current_user(session)
+    @user = User.find_by_id(params[:id])
+    erb :'/users/show'
   end
 
   get '/users/:id/edit' do
@@ -55,7 +57,8 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session[:user_id].clear
+    session.clear
+    redirect '/'
   end
 
 end

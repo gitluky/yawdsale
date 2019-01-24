@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-  
+    @current_user = Helpers.current_user(session)
     erb :index
   end
 

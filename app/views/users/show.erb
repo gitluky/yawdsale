@@ -1,9 +1,15 @@
-<p><%= @user.first_name %></p>
-<p><%= @user.last_name %></p>
-<p><%= @user.email_address %></p>
-<p><%= @user.password_digest %></p>
-<p><%= @user.street_address %></p>
-<p><%= @user.city %></p>
-<p><%= @user.state  %></p>
-<p><%= @user.zipcode %></p>
-<a href="/users/<%= @user.id %>/edit">Update Profile</a>
+<% if @current_user == @user %>
+  <% @user.attributes.except("id","password_digest").each do |k,v|%>
+    <% if v %>
+      <p><%= k.split('_').map(&:capitalize).join(' ') %>: <%= v %></p>
+    <% end %>
+  <% end %>
+
+
+  <a href="/users/<%= @user.id %>/edit">Update Profile</a>
+<% else %>
+  <p><%= @user.first_name if @user.first_name %></p>
+  <p><%= @user.email_address if @user.email_address %></p>
+  <p><%= @user.city if @user.city %></p>
+  <p><%= @user.state  if @user.state %></p>
+<% end %>
