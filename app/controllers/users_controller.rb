@@ -56,6 +56,10 @@ class UsersController < ApplicationController
 
   end
 
+  get '/users/:id/yawdsales' do
+
+  end
+
   get '/logout' do
     session.clear
     redirect '/'

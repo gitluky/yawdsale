@@ -16,48 +16,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-      <div class="mx-auto">
-        <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="yawdsale3.png" style="width:200px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <% if @current_user %>
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="/users/<%= @current_user.id %>"><%= @current_user.email_address %><span class="sr-only">(current)</span></a>
-            </li>
-          <% else %>
-            <li class="nav-item active">
-              <a class="nav-link text-light" href="/login">Log In<span class="sr-only">(current)</span></a>
-            </li>
-          <% end %>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/users/yawdsales %>">Near You</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/logout">Log Out</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control ml-auto" type="search" placeholder="Find Yawdsales near..." aria-label="Search">
-          <button class="btn btn-outline-light my-2 my-sm-0 text-light mr-auto" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="mx-auto">
+          <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="yawdsale3.png" style="width:200px;"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <% if @current_user %>
+              <li class="nav-item active">
+                <a class="nav-link text-light" href="/users/<%= @current_user.id %>"><%= @current_user.email_address %><span class="sr-only">(current)</span></a>
+              </li>
+            <% else %>
+              <li class="nav-item active">
+                <a class="nav-link text-light" href="/login">Log In<span class="sr-only">(current)</span></a>
+              </li>
+            <% end %>
+
+            <% if Helpers.logged_in?(session) %>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/users/yawdsales %>">Near You</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/logout">Log Out</a>
+              </li>
+            <% end %>
+
+          </ul>
+          <form class="form-inline form my-2">
+            <input class="form-control ml-auto" type="search" placeholder="Enter the City..." aria-label="Search"><br>
+            <input class="form-control" type="search" placeholder="Enter the State..." aria-label="Search"><br>
+            <button class="btn btn-outline-light my-2 my-sm-0 text-light mr-auto" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
     <div class="container h-100">
       <%= yield %>
     </div>

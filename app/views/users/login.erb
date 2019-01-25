@@ -1,9 +1,26 @@
-<%= flash[:message]%>
-
-<form action="/login" method="post">
-  <label for="email_address">Email Address: </label>
-  <input type="text" name="email_address" id="email_address"></input>
-  <label for="password">Password: </label>
-  <input type="text" name="password" id="password"></input>
-  <input type="submit" value="Log In"></input>
-</form>
+<div class="row mt-5 align-items-center d-block">
+  <div class="col-md-8 mx-auto">
+    <div>
+      <p style="color: red;"><%= flash[:message]%></p>
+    </div>
+  </div>
+</div>
+<div class="row mt-5 align-items-center">
+  <div class="col-7 col-md-7 mx-auto text-right">
+    <form action="/login" method="post">
+      <div class="form-group">
+        <label for="email_address">Email Address: </label>
+        <input type="text" name="email_address" id="email_address"></input>
+      </div>
+      <div class="form-group">
+        <label for="password">Password: </label>
+        <input type="text" name="password" id="password"></input>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Log In"></input>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5 mx-auto">
+  </div>
+</div>
