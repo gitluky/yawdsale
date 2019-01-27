@@ -8,4 +8,5 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+Geocoder.configure(:key => "#{File.read('./../apikey.txt')}")
 require_all 'app'
