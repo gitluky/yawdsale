@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2018_12_31_034514) do
     t.string "city"
     t.string "state"
     t.integer "zipcode"
-    t.string "address"
     t.float "latitude"
     t.float "longitute"
   end
@@ -39,7 +38,6 @@ ActiveRecord::Schema.define(version: 2018_12_31_034514) do
     t.string "city"
     t.string "state"
     t.integer "zipcode"
-    t.string "address"
     t.float "latitude"
     t.float "longitute"
   end

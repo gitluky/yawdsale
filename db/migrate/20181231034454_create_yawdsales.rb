@@ -8,7 +8,6 @@ class CreateYawdsales < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :state
       t.integer :zipcode
-      t.string :address
       t.float :latitude
       t.float :longitute
     end
