@@ -1,15 +1,29 @@
 <% if @current_user == @user %>
-  <% @user.attributes.except("id","password_digest").each do |k,v|%>
+  <br><br><h1>Your Profile</h1><br>
+  <% @user.attributes.except("id","password_digest", "longitude", "latitude").each do |k,v|%>
     <% if v %>
       <p><%= k.split('_').map(&:capitalize).join(' ') %>: <%= v %></p>
     <% end %>
   <% end %>
-
-
+  <br>
   <a href="/users/<%= @user.id %>/edit">Update Profile</a>
 <% else %>
+  <h1><%= @user.email_address %>'s Profile</h1>
   <p><%= @user.first_name if @user.first_name %></p>
   <p><%= @user.email_address if @user.email_address %></p>
   <p><%= @user.city if @user.city %></p>
   <p><%= @user.state  if @user.state %></p>
+<% end %>
+<br><br>
+<h2><%= @user.email_address %>'s Active Yawdsales</h2> <% #needs validation for end_date %>
+<br>
+<% @user.yawdsales.each do |yawdsale| %>
+  <p><%= yawdsale.title if yawdsale.title %></p>
+  <p><%= yawdsale.description if yawdsale.description %></p>
+  <p><%= yawdsale.address if yawdsale.address %></p>
+  <p><%= yawdsale.start_time if yawdsale.start_time %></p>
+  <p><%= yawdsale.start_time if yawdsale.start_time %></p>'
+  <% if @current_user == @user %>
+    <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
+  <% end %>
 <% end %>

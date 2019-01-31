@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_034514) do
+ActiveRecord::Schema.define(version: 2019_01_29_223226) do
 
   create_table "photos", force: :cascade do |t|
     t.string "filename"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2018_12_31_034514) do
     t.integer "zipcode"
     t.float "latitude"
     t.float "longitute"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
 end

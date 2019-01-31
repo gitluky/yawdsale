@@ -6,12 +6,13 @@ class YawdsalesController < ApplicationController
   end
 
   get '/yawdsales/new' do
-
+    @current_user = Helpers.current_user(session)
     erb :'yawdsales/new'
   end
 
-  post '/yawdsales/' do
-
+  post '/yawdsales' do
+    current_user = Helpers.current_user(session)
+    current_user.yawdsales.create(params)
     redirect "/users/#{Helpers.current_user(session).id}/yawdsales"
   end
 

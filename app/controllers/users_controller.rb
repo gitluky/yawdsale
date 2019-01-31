@@ -52,11 +52,13 @@ class UsersController < ApplicationController
     erb :'/users/show'
   end
 
-  get '/users/:id/edit' do
-
+  get '/users/:id/yawdsales' do
+    @current_user = Helpers.current_user(session)
+    @user = User.find_by_id(params[:id])
+    erb :'/users/yawdsales'
   end
 
-  get '/users/:id/yawdsales' do
+  get '/users/:id/edit' do
 
   end
 

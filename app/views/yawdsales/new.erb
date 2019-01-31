@@ -1,0 +1,60 @@
+<div class="mt-5">
+  <div class="text-center">
+    <h1>Post your Yawdsale</h1>
+  </div>
+  <div class="mt-5">
+  <form action="/yawdsales" method="post">
+    <div class="form-group row">
+      <label for="start_time" class="col-2 col-form-label">Starts at: </label>
+      <div class="col-10">
+        <input class="form-control" type="datetime-local" name="start_time" id="start_time">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="end_time" class="col-2 col-form-label">Ends at: </label>
+      <div class="col-10">
+        <input class="form-control" type="datetime-local" name="end_time" id="end_time">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="title" class="col-2 col-form-label">Title: </label>
+      <div class="col-10">
+        <input class="form-control" type="title" name="title" id="title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="description" class="col-2 col-form-label">Description: </label>
+      <div class="col-10">
+        <textarea class="form-control" type="textarea" name="description" rows="10" id="description"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="street_address" class="col-2 col-form-label">Street Address: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="street_address" id="street_address">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="city" class="col-2 col-form-label">City/Town: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="city" id="city">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="state" class="col-2 col-form-label">State: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="state" id="state">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="zipcode" id="zipcode">
+      </div>
+    </div>
+    <div class="text-center">
+      <input type="submit" value="Post Yawdsale" class="btn btn-success"></input>
+    </div>
+  </form>
+  </div>
+</div>
