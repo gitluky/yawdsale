@@ -19,7 +19,7 @@ class YawdsalesController < ApplicationController
     else
       current_user = Helpers.current_user(session)
       current_user.yawdsales.create(params)
-      redirect "/users/#{Helpers.current_user(session).id}/yawdsales"
+      redirect "/users/#{Helpers.current_user(session).id}"
     end
   end
 
