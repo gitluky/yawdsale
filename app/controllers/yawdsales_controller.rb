@@ -7,13 +7,20 @@ class YawdsalesController < ApplicationController
 
   get '/yawdsales/new' do
     @current_user = Helpers.current_user(session)
+    @params = flash[:params]
     erb :'yawdsales/new'
   end
 
   post '/yawdsales' do
-    current_user = Helpers.current_user(session)
-    current_user.yawdsales.create(params)
-    redirect "/users/#{Helpers.current_user(session).id}/yawdsales"
+    if params.any?(nil)
+      flash[:params] = params
+      flash[:message] = "Please fill in all fields."
+      redirect "/yawdsales/new"
+    else
+      current_user = Helpers.current_user(session)
+      current_user.yawdsales.create(params)
+      redirect "/users/#{Helpers.current_user(session).id}/yawdsales"
+    end
   end
 
   get '/yawdsales/:id' do

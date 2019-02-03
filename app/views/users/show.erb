@@ -18,12 +18,14 @@
 <h2><%= @user.email_address %>'s Active Yawdsales</h2> <% #needs validation for end_date %>
 <br>
 <% @user.yawdsales.each do |yawdsale| %>
-  <p><%= yawdsale.title if yawdsale.title %></p>
-  <p><%= yawdsale.description if yawdsale.description %></p>
-  <p><%= yawdsale.address if yawdsale.address %></p>
-  <p><%= yawdsale.start_time if yawdsale.start_time %></p>
-  <p><%= yawdsale.start_time if yawdsale.start_time %></p>'
-  <% if @current_user == @user %>
-    <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
+  <% if yawdsale.start_time > DateTime.now %>
+    <p><%= yawdsale.title if yawdsale.title %></p>
+    <p><%= yawdsale.description if yawdsale.description %></p>
+    <p><%= yawdsale.address if yawdsale.address %></p>
+    <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
+    <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>'
+    <% if @current_user == @user %>
+      <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
+    <% end %>
   <% end %>
 <% end %>
