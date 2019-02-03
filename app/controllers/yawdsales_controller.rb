@@ -16,6 +16,9 @@ class YawdsalesController < ApplicationController
       flash[:params] = params
       flash[:message] = "Please fill in all fields."
       redirect "/yawdsales/new"
+    elsif params[:start_time] < DateTime.now || params[:end_time] < DateTime.now || params[:end_time] < params[:end_time]
+      flash[:message] = "Please verify dates."
+      redirect "/yawdsales/new"
     else
       current_user = Helpers.current_user(session)
       current_user.yawdsales.create(params)

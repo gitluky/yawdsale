@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :state
       t.integer :zipcode
       t.float :latitude
-      t.float :longitute
+      t.float :longitude
     end
   end
 end
