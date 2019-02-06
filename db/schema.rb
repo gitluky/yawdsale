@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_223226) do
     t.string "state"
     t.integer "zipcode"
     t.float "latitude"
-    t.float "longitute"
+    t.float "longitude"
   end
 
   create_table "yawdsales", force: :cascade do |t|
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_223226) do
     t.string "state"
     t.integer "zipcode"
     t.float "latitude"
-    t.float "longitute"
+    t.float "longitude"
     t.datetime "start_time"
     t.datetime "end_time"
   end

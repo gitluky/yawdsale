@@ -2,8 +2,8 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    @message = flash[:message]
     @params = flash[:params]
+    @message = flash[:message]
     erb :'users/create_user'
   end
 

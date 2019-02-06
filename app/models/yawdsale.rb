@@ -5,7 +5,7 @@ class Yawdsale < ActiveRecord::Base
   has_many :photos
 
   geocoded_by :address
-  reverse_geocoded_by :latitude, :longitute
+  reverse_geocoded_by :latitude, :longitude
   after_validation :geocode
 
   def address
