@@ -24,6 +24,7 @@
   <p><%= yawdsale.start_time if yawdsale.start_time %></p>
   <p><%= yawdsale.start_time if yawdsale.start_time %></p>'
   <% if @current_user == @user %>
-    <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
+    <a href="/yawdsales/<%= yawdsale.id %>">View Yawdsale</a>
+
   <% end %>
 <% end %>

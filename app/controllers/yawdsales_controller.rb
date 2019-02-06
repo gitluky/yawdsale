@@ -18,8 +18,9 @@ class YawdsalesController < ApplicationController
   end
 
   get '/yawdsales/:id' do
+    @yawdsale = Yawdsale.find_by_id(params[:id])
 
-    erb :'/yawdsales/show'
+    erb :'/yawdsales/show_yawdsale'
   end
 
   get '/yawdsales/:id/edit' do
