@@ -10,25 +10,33 @@
           <h2>Hi, <%= @current_user.first_name %></h2><br>
           <h1>Find a Yawdsale:</h1><br>
           <p>Search by: </p>
-          <form action="/search" method="post">
+          <form action="/yawdsales/search" method="GET">
             <div class="form-group">
               <label for="street_address">Street Address (optional): </label>
               <input type="text" name="street_address" id="street_address"></input><p></p>
             </div>
             <div class="form-group">
               <label for="city">City: </label>
-              <input type="text" name="City" id="city"></input>
+              <input type="text" name="city" id="city"></input>
             </div>
             <div class="form-group">
               <label for="state">State: </label>
-              <input type="text" name="State" id="state"></input>
+              <input type="text" name="state" id="state"></input>
             </div>
             <div class="form-group">
               <label for="zipcode">Zipcode (optional): </label>
-              <input type="text" name="Zipcode" id="zipcode"></input>
+              <input type="text" name="zipcode" id="zipcode"></input>
             </div>
             <div class="form-group">
-              <input type="button" value="Search"></input>
+              <select class="custom-select mr-sm-1" name="distance" id="distance">
+               <option selected>Distance...</option>
+               <option value="5">5 miles</option>
+               <option value="10">10 miles</option>
+               <option value="15">15 miles</option>
+             </select>
+           </div>
+            <div class="form-group">
+              <input type="submit" value="Search"></input>
             </div>
           </form>
         <% else %>

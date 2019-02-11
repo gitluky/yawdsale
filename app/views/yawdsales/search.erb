@@ -1,0 +1,40 @@
+<div class="mt-5">
+  <div class="text-center">
+    <img src="<%= @map_string %>" style="width: 100%;">
+    <% letter = 'A' %>
+    <% @search_results.each do |yawdsale| %>
+      <% if yawdsale.end_time > DateTime.now %>
+
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title"><%= letter %>) <%= yawdsale.title if yawdsale.title %></h5>
+          <p class="card-text">
+            <p><%= yawdsale.address if yawdsale.address %></p>
+            <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
+            <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>
+            <% letter = letter.next %>
+          </p>
+          <a href="href="/yawdsales/<%= yawdsale.id %>" class="btn btn-primary">View</a>
+        </div>
+        <% if @current_user == yawdsale.user %>
+          <div class="card-footer text-muted">
+          <a href="/yawdsales/<%= yawdsale.id %>/edit">Edit Yawdsale</a>
+          <br><br>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
