@@ -18,26 +18,15 @@
 <h2><%= @user.email_address %>'s Active Yawdsales</h2> <% #needs validation for end_date %>
 <br>
 <% @user.yawdsales.each do |yawdsale| %>
-<<<<<<< HEAD
-  <p><%= yawdsale.title if yawdsale.title %></p>
-  <p><%= yawdsale.description if yawdsale.description %></p>
-  <p><%= yawdsale.address if yawdsale.address %></p>
-  <p><%= yawdsale.start_time if yawdsale.start_time %></p>
-  <p><%= yawdsale.start_time if yawdsale.start_time %></p>'
-  <% if @current_user == @user %>
-    <a href="/yawdsales/<%= yawdsale.id %>">View Yawdsale</a>
-
-=======
   <% if yawdsale.end_time > DateTime.now %>
     <p><%= yawdsale.title if yawdsale.title %></p>
-    <p><%= yawdsale.description if yawdsale.description %></p>
     <p><%= yawdsale.address if yawdsale.address %></p>
     <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
     <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>'
+    <a href="/yawdsales/<%= yawdsale.id %>">View</a>
     <% if @current_user == @user %>
       <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
       <br><br>
     <% end %>
->>>>>>> 9ab40f6684d1c575ed789a0bdad69798168dc000
   <% end %>
 <% end %>

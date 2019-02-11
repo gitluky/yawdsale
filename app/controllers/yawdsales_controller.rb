@@ -1,7 +1,17 @@
 class YawdsalesController < ApplicationController
 
   get '/yawdsales' do
-
+    current_user = Helpers.current_user(session)
+    @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=10&size=800x600"
+    @nearby_yawdsales = Yawdsale.near(current_user)
+    letter = "A"
+    @nearby_yawdsales.each do |yawdsale|
+      if yawdsale.end_time > DateTime.now
+        @map_string += "&markers=color:red%7Clabel:#{letter}%7C#{yawdsale.latitude},#{yawdsale.longitude}"
+        letter = letter.next
+      end
+    end
+    @map_string += "&key=#{File.read('./../apikey.txt')}"
     erb :'/yawdsales/index'
   end
 
