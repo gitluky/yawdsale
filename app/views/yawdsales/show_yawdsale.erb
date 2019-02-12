@@ -1,14 +1,28 @@
-
-<p><%= @yawdsale.title if @yawdsale.title %></p>
-<p><%= @yawdsale.description if @yawdsale.description %></p>
-<p><%= @yawdsale.address if @yawdsale.address %></p>
-<p>Begins: <%= @yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.start_time %></p>
-<p>Ends: <%= @yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.end_time %></p>
-<p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p><br>
-<iframe
-  width="600"
-  height="450"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=<%= File.read('./../apikey.txt') %>
-    &q=<%= @yawdsale.latitude %>, <%= @yawdsale.longitude %>" allowfullscreen>
-</iframe>
+<div class="mt-5">
+  <div class="text-center">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title"><%= @yawdsale.title if @yawdsale.title %></h5>
+        <p class="card-text">
+          <p><%= @yawdsale.description if @yawdsale.description %></p>
+          <p><%= @yawdsale.address if @yawdsale.address %></p>
+          <p>Begins: <%= @yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.start_time %></p>
+          <p>Ends: <%= @yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.end_time %></p>
+          <p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p><br>
+        </p>
+        <iframe
+          width="600"
+          height="450"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?key=<%= File.read('./../apikey.txt') %>
+            &q=<%= @yawdsale.latitude %>, <%= @yawdsale.longitude %>" allowfullscreen>
+        </iframe>
+      </div>
+      <% if @current_user == @yawdsale.user %>
+        <div class="card-footer text-muted">
+          <a href="/yawdsales/<%= yawdsale.id %>/edit">Edit Yawdsale</a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

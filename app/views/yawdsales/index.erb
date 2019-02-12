@@ -14,7 +14,7 @@
             <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>
             <% letter = letter.next %>
           </p>
-          <a href="href="/yawdsales/<%= yawdsale.id %>" class="btn btn-primary">View</a>
+          <a href="/yawdsales/<%= yawdsale.id %>" class="btn btn-primary">View</a>
         </div>
         <% if @current_user == yawdsale.user %>
           <div class="card-footer text-muted">
