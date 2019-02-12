@@ -3,7 +3,7 @@ class YawdsalesController < ApplicationController
   get '/yawdsales' do
     if Helpers.logged_in?(session)
       current_user = Helpers.current_user(session)
-      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=#{zoom}&size=640x500"
+      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=12&size=640x500"
       @nearby_yawdsales = Yawdsale.near(current_user)
       letter = "A"
       @nearby_yawdsales.each do |yawdsale|
@@ -70,18 +70,26 @@ class YawdsalesController < ApplicationController
   end
 
   get '/yawdsales/:id/edit' do
-
+    @yawdsale = Yawdsale.find_by_id(params[:id])
+    if !@current_user == @yawdsale.user
+      redirect '/yawdsale/#{@yawdsale.id}'
+    end
     erb :'/yawdsales/edit'
   end
 
-  get '/yawdsales/:id/photos/:photo_id' do
+  get '/yawdsales/:id/:photo_id' do
 
     erb :'/photos/show_photo'
   end
 
-  delete '/yawdsales/:id/delete' do
-
-
+  delete '/yawdsales/:id' do
+    yawdsale = Yawdsale.find_by_id(params[:id])
+    if Helpers.current_user(session) == yawdsale.user
+      Yawdsale.destroy(params[:id])
+      redirect '/'
+    else
+      redirect "/yawdsales/#{params[:id]}"
+    end
   end
 
 
