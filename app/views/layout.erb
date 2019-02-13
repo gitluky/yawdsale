@@ -42,17 +42,7 @@
               <li class="nav-item">
                 <a class="nav-link text-light" href="/logout">Log Out</a>
               </li>
-              <form class="form-inline form my-2" action="/yawdsales/search" method="GET">
-               <input class="form-control ml-auto" type="search" name="city" placeholder="Enter the City..." aria-label="Search"><br>
-               <input class="form-control" type="search" name="state" placeholder="Enter the State..." aria-label="Search"><br>
-               <select class="custom-select mr-sm-1" name= "distance" id="distance">
-                <option selected>Distance...</option>
-                <option value="5">5 miles</option>
-                <option value="10">10 miles</option>
-                <option value="15">15 miles</option>
-              </select>
-               <button class="btn btn-outline-light my-2 my-sm-0 text-light mr-auto" type="submit">Search</button>
-             </form>
+
             <% else %>
               <li class="nav-item active">
                 <a class="nav-link text-light" href="/login">Log In<span class="sr-only">(current)</span></a>
@@ -62,6 +52,21 @@
               </li>
             <% end %>
           </ul>
+          <% if Helpers.logged_in?(session) %>
+            <ul class="navbar-nav ml-auto">
+              <form class="form-inline form my-2" action="/yawdsales/search" method="GET">
+                <input class="form-control ml-auto" type="search" name="city" placeholder="Enter the City..." aria-label="Search"><br>
+                <input class="form-control" type="search" name="state" placeholder="Enter the State..." aria-label="Search"><br>
+                <select class="custom-select mr-sm-1" name= "distance" id="distance">
+                  <option selected>Distance...</option>
+                  <option value="5">5 miles</option>
+                  <option value="10">10 miles</option>
+                  <option value="15">15 miles</option>
+                </select>
+                <button class="btn btn-outline-light my-2 my-sm-0 text-light mr-auto" type="submit">Search</button>
+              </form>
+            </ul>
+          <% end %>
         </div>
       </nav>
 
