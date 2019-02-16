@@ -8,13 +8,12 @@
         <div class="card-body">
           <h5 class="card-title"><%= @yawdsale.title if @yawdsale.title %></h5>
           <p class="card-text">
-            <p><%= @yawdsale.description if @yawdsale.description %></p>
-            <p><%= @yawdsale.address if @yawdsale.address %></p>
-            <p>Begins: <%= @yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.start_time %></p>
-            <p>Ends: <%= @yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.end_time %></p>
-            <p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p><br>
-          </p>
-          <div class="card-footer text-muted">
+          <p><%= @yawdsale.description if @yawdsale.description %></p>
+          <p><%= @yawdsale.address if @yawdsale.address %></p>
+          <p>Begins: <%= @yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.start_time %></p>
+          <p>Ends: <%= @yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.end_time %></p>
+          <p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p><br>
+          <div class="card-body">
             <div class="row">
               <% @yawdsale.photos.each do |photo| %>
                 <div class="col-sm">
@@ -23,7 +22,7 @@
               <% end %>
             </div>
           </div>
-          <div class="card-footer text-muted">
+          <div class="card-body text-muted">
             <iframe
               width="600"
               height="450"

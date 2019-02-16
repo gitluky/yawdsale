@@ -61,6 +61,13 @@
           </div>
         </div>
       </div>
+      <div class="form-group row">
+        <% @yawdsale.photos.each do |photo| %>
+          <div class="col-sm">
+            <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.filename %>"></a>
+          </div>
+        <% end %>
+      </div>
       <input type="submit" value="Update Yawdsale" class="btn btn-success"></input>
       <a href="/" class="btn btn-danger">Cancel</a>
     </form>
