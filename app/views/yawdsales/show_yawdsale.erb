@@ -12,12 +12,12 @@
           <p><%= @yawdsale.address if @yawdsale.address %></p>
           <p>Begins: <%= @yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.start_time %></p>
           <p>Ends: <%= @yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if @yawdsale.end_time %></p>
-          <p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p><br>
+          <p>Host: <a href="/users/<%= @yawdsale.user_id %>"><%= @yawdsale.user.email_address %></a></p>
           <div class="card-body">
             <div class="row">
               <% @yawdsale.photos.each do |photo| %>
                 <div class="col-sm">
-                  <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.filename %>"></a>
+                  <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
                 </div>
               <% end %>
             </div>

@@ -1,0 +1,31 @@
+<div class="mt-5">
+  <div class="text-center">
+
+    <% if @num_upload_fields > 0 %>
+      <form method="post" action="/yawdsales/<%= @yawdsale.id %>/photos" enctype="multipart/form-data">
+        <% @num_upload_fields.times do %>
+          <div class="form-group row">
+            <div class="col-12">
+              <input class="form-control" type="file" name="photos[]">
+            </div>
+          </div>
+        <% end %>
+        <input type="submit" value="Upload Photo(s)" class="btn btn-success"/>
+      </form>
+    <% else %>
+      <p>Maximum number of 3 photos reached. Delete a photo to upload another.</p>
+    <% end %>
+
+    <% @yawdsale.photos.each do |photo| %>
+      <div class="mt-2">
+        <div class="col-sm">
+          <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
+        </div>
+        <form class="mt-2" method="post" action="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>">
+          <input type="hidden" name="_method" value="delete"/>
+          <input type="submit" value="Delete" class="btn btn-danger"/>
+        </form>
+      </div>
+    <% end %>
+  </div>
+</div>

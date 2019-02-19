@@ -3,8 +3,8 @@ class YawdsalesController < ApplicationController
   get '/yawdsales' do
     if Helpers.logged_in?(session)
       current_user = Helpers.current_user(session)
-      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=12&size=640x500"
-      @nearby_yawdsales = Yawdsale.near(current_user)
+      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=13&size=640x500"
+      @nearby_yawdsales = Yawdsale.near(current_user, 5, :order => "distance")
       letter = "A"
       @nearby_yawdsales.each do |yawdsale|
         if yawdsale.end_time > DateTime.now
@@ -64,15 +64,19 @@ class YawdsalesController < ApplicationController
       path = "./public/#{@yawdsale.id}/photos"
       FileUtils.mkdir_p path
 
-      params[:photos].each do |photo|
-        filename = photo[:filename]
-        file = photo[:tempfile]
+      if !!params[:photos]
+        params[:photos].each do |photo|
+          filename = photo[:filename]
+          file = photo[:tempfile]
 
-        File.write("#{path}/#{filename}", file.read)
+          new_photo = Photo.create(filename: filename)
+          @yawdsale.photos << new_photo
 
-        @yawdsale.photos.create(filename: filename)
+          File.write("#{path}/#{new_photo.id}", file.read)
 
+        end
       end
+
       @yawdsale.save
       redirect "/yawdsales/#{@yawdsale.id}"
     end
@@ -86,7 +90,7 @@ class YawdsalesController < ApplicationController
 
   get '/yawdsales/:id/edit' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
-    
+
     if !@current_user == @yawdsale.user
       redirect '/yawdsale/#{@yawdsale.id}'
     end
@@ -95,72 +99,14 @@ class YawdsalesController < ApplicationController
     erb :'/yawdsales/edit'
   end
 
-  # get '/yawdsales/:id/photos/new' do
-  #   @yawdsale = Yawdsale.find_by_id(params[:id])
-  #   erb :'/photos/new'
-  # end
-
-  # post '/yawdsales/:id/photos' do
-  #
-  #   current_user = Helpers.current_user(session)
-  #   yawdsale = Yawdsale.find_by_id(params[:id])
-  #   yawdsale_photos = Photo.where("yawdsale_id = #{yawdsale.id}")
-  #
-  #   if !yawdsale_photos.empty?
-  #     redirect "/yawdsales/#{yawdsale.id}"
-  #   end
-  #
-  #   path = "./public/#{yawdsale.id}/photos"
-  #   FileUtils.mkdir_p path
-  #
-  #   binding.pry
-  #
-  #   params[:photos].each do |photo|
-  #     filename = photo[:filename]
-  #     file = photo[:tempfile]
-  #
-  #     #File.open("./public/#{current_user}/#{filename}", 'wb') do |f|
-  #     File.write("#{path}/#{filename}", file.read)
-  #     #end
-  #
-  #     yawdsale.photos.create(filename: filename)
-  #   end
-  #     redirect "/yawdsales/#{params[:id]}"
-  # end
-
-  # patch '/yawdsales/:id/photos' do
-  #   current_user = Helpers.current_user(session)
-  #   yawdsale = Yawdsale.find_by_id(params[:id])
-  #   yawdsale_photos = Photo.where("yawdsale_id = #{yawdsale.id}")
-  #   photo_count = yawdsale_photos.count || 0
-  #
-  #
-  #   params[:photos].each do |photo|
-  #     if photo_count < 3
-  #       filename = photo[:filename]
-  #       file = photo[:tempfile]
-  #
-  #       File.open("./public/#{yawdsale.id}/#{filename}", 'wb') do |f|
-  #          f.write(file.read)
-  #       end
-  #
-  #       current_user.photos.create(filename: filename)
-  #       photo_count +=1
-  #     else
-  #       flash[:message] = "There is a 3 photo limit per Yawdsale. Delete photos to add more."
-  #
-  #     end
-  #   end
-  #     redirect "/yawdsales/#{params[:id]}"
-  # end
-
-  get '/yawdsales/:id/photos/:photo_id' do
+  patch '/yawdsales/:id' do
+    binding.pry
     @yawdsale = Yawdsale.find_by_id(params[:id])
-    @photo = Photo.find_by_id(params[:photo_id])
+    @yawdsale.update(title: params[:title], description: params[:description], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode], start_time: params[:start_time], end_time: params[:end_time])
 
-
-    erb :'/photos/show_photo'
+    redirect "/yawdsales/#{@yawdsale.id}"
   end
+
 
   delete '/yawdsales/:id' do
     yawdsale = Yawdsale.find_by_id(params[:id])
