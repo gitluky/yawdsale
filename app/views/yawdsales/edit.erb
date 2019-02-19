@@ -68,12 +68,21 @@
           </div>
         <% end %>
       </div>
-      <input type="submit" value="Update Yawdsale" class="btn btn-success"></input>
-      <a href="/" class="btn btn-danger">Cancel</a>
+      <div>
+        <a href="/yawdsales/<%= @yawdsale.id %>/photos/edit" class="btn btn-outline-secondary">Update Photos</a>
+      </div>
+      <div class="row mt-2">
+        <div class="mx-auto">
+          <input type="submit" value="Update Yawdsale" class="btn btn-success"></input>
+          <form method="post" action="/yawdsales/<%= @yawdsale.id %>">
+            <input type="hidden" name="_method" value="delete"/>
+            <input type="submit" value="Delete" class="btn btn-danger"/>
+          </form>
+        </div>
+      </div>
     </form>
-    <form class="mt-1" method="post" action="/yawdsales/<%= @yawdsale.id %>">
-      <input type="hidden" name="_method" value="delete"/>
-      <input type="submit" value="Delete" class="btn btn-danger"/>
-    </form>
+    <div class="mt-2">
+      <a href="/yawdsales/<%= @yawdsale.id %>" class="btn btn-outline-danger">Cancel</a>
+    </div>
   </div>
 </div>

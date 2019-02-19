@@ -86,9 +86,12 @@ class YawdsalesController < ApplicationController
 
   get '/yawdsales/:id/edit' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
+    
     if !@current_user == @yawdsale.user
       redirect '/yawdsale/#{@yawdsale.id}'
     end
+
+
     erb :'/yawdsales/edit'
   end
 
