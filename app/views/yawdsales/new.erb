@@ -8,6 +8,7 @@
 <div class="mt-5">
   <div class="text-center">
     <h1>Post your Yawdsale</h1>
+    <p>All fields are required.</p>
   </div>
   <div class="mt-5">
   <form action="/yawdsales" method="post" enctype="multipart/form-data">
@@ -59,6 +60,7 @@
         <input class="form-control" type="text" name="zipcode" id="zipcode">
       </div>
     </div>
+    <h3>Upload Photos (optional)</h3>
     <div class="form-group row">
       <div class="col-12">
         <input class="form-control" type="file" name="photos[]">
@@ -74,7 +76,7 @@
         <input class="form-control" type="file" name="photos[]">
       </div>
     </div>
-    <div class="text-center">
+    <div class="text-center mt-5">
       <input type="submit" value="Post Yawdsale" class="btn btn-success"/>
     </div>
   </form>

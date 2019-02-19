@@ -1,50 +1,64 @@
-<% if @current_user == @user %>
-  <br><br><h1>Your Profile</h1><br>
-  <% @user.attributes.except("id","password_digest", "longitude", "latitude").each do |k,v|%>
-    <% if v %>
-      <p><%= k.split('_').map(&:capitalize).join(' ') %>: <%= v %></p>
-    <% end %>
-  <% end %>
-  <br>
-  <a href="/users/<%= @user.id %>/edit">Update Profile</a>
-<% else %>
-  <h1><%= @user.email_address %>'s Profile</h1>
-  <p><%= @user.first_name if @user.first_name %></p>
-  <p><%= @user.email_address if @user.email_address %></p>
-  <p><%= @user.city if @user.city %></p>
-  <p><%= @user.state  if @user.state %></p>
-<% end %>
-<br><br>
-<h2><%= @user.email_address %>'s Active Yawdsales</h2>
-<br>
-<% @user.yawdsales.each do |yawdsale| %>
-  <% if yawdsale.end_time > DateTime.now %>
-    <p><%= yawdsale.title if yawdsale.title %></p>
-    <p><%= yawdsale.address if yawdsale.address %></p>
-    <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
-    <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>'
-    <a href="/yawdsales/<%= yawdsale.id %>" class="btn btn-info">View</a>
+<div class="mt-5">
+  <div class="text-center">
     <% if @current_user == @user %>
-      <a href="/yawdsales/<%= yawdsale.id %>/edit" class="btn btn-success">Edit Yawdsale</a>
-      <br><br>
+      <br><br><h1>Your Profile</h1><br>
+      <% @user.attributes.except("id","password_digest", "longitude", "latitude").each do |k,v|%>
+        <% if v %>
+          <p><%= k.split('_').map(&:capitalize).join(' ') %>: <%= v %></p>
+        <% end %>
+      <% end %>
+      <br>
+      <a href="/users/<%= @user.id %>/edit" class="btn btn-outline-success">Update Profile</a>
+    <% else %>
+      <h1><%= @user.email_address %>'s Profile</h1>
+      <p><%= @user.first_name if @user.first_name %></p>
+      <p><%= @user.email_address if @user.email_address %></p>
+      <p><%= @user.city if @user.city %></p>
+      <p><%= @user.state  if @user.state %></p>
     <% end %>
-  <% end %>
-<% end %>
-
-<% if @user.yawdsales.any? {|yawdsale| yawdsale.end_time < DateTime.now } %>
-  <h2><%= @user.email_address %>'s Previous Yawdsales</h2>
-  <br>
-  <% @user.yawdsales.each do |yawdsale| %>
-    <% if yawdsale.end_time < DateTime.now %>
-      <p><%= yawdsale.title if yawdsale.title %></p>
-      <p><%= yawdsale.address if yawdsale.address %></p>
-      <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
-      <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>'
-      <a href="/yawdsales/<%= yawdsale.id %>">View</a>
-      <% if @current_user == @user %>
-        <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
-        <br><br>
+    <br><br>
+    <% if !@active_yawdsales.empty? %>
+    <h2><%= @user.email_address %>'s Active Yawdsales</h2>
+    <div class="card-footer mt-3">
+    </div>
+    <div class="card text-center">
+      <% if !@active_yawdsales.empty? %>
+        <% @active_yawdsales.each do |yawdsale| %>
+          <div class="card-body">
+            <h5 class="card-title"><%= yawdsale.title if yawdsale.title %></h5>
+            <p class="card-text">
+              <p><%= yawdsale.address if yawdsale.address %></p>
+              <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
+              <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>
+            </p>
+            <a href="/yawdsales/<%= yawdsale.id %>" class="btn btn-success">View</a>
+            <% if @current_user == yawdsale.user %>
+              <a href="/yawdsales/<%= yawdsale.id %>/edit" class="btn btn-outline-success">Edit Yawdsale</a>
+            <% end %>
+          </div>
+          <div class="card-footer">
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
+    <% if @user.yawdsales.any? {|yawdsale| yawdsale.end_time < DateTime.now } %>
+      <h2><%= @user.email_address %>'s Previous Yawdsales</h2>
+      <br>
+      <% @user.yawdsales.each do |yawdsale| %>
+        <% if yawdsale.end_time < DateTime.now %>
+          <p><%= yawdsale.title if yawdsale.title %></p>
+          <p><%= yawdsale.address if yawdsale.address %></p>
+          <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
+          <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>'
+          <a href="/yawdsales/<%= yawdsale.id %>">View</a>
+          <% if @current_user == @user %>
+            <a href="/yawdsales/<%= yawdsale.id %>/edit">Update Yawdsale</a>
+            <br><br>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
+
+  </div>
+</div>

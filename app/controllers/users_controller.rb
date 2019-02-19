@@ -49,6 +49,11 @@ class UsersController < ApplicationController
   get '/users/:id' do
     @current_user = Helpers.current_user(session)
     @user = User.find_by_id(params[:id])
+    @active_yawdsales = @user.yawdsales.where("end_time > ?", DateTime.now)
+    @previous_yawdsales = @user.yawdsales.where("end_time < ?", DateTime.now)
+
+
+
     erb :'/users/show'
   end
 

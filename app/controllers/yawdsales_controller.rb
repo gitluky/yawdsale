@@ -49,7 +49,8 @@ class YawdsalesController < ApplicationController
   end
 
   post '/yawdsales' do
-    if params.values.any? {|v| v.nil?}
+    binding.pry
+    if params.values.any? &:empty?
       flash[:params] = params
       flash[:message] = "Please fill in all fields."
       redirect "/yawdsales/new"
