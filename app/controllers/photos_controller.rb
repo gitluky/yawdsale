@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
   post '/yawdsales/:id/photos' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
 
-    path = "./public/#{@yawdsale.id}/photos"
+    path = "./public/yawdsales/#{@yawdsale.id}/photos"
     FileUtils.mkdir_p path
 
     params[:photos].each do |photo|
@@ -37,7 +37,7 @@ class PhotosController < ApplicationController
     @yawdsale = Yawdsale.find_by_id(params[:id])
     @photo = Photo.find_by_id(params[:photo_id])
 
-    path = "./public/#{@yawdsale.id}/photos/#{@photo.id}"
+    path = "./public/yawdsales/#{@yawdsale.id}/photos/#{@photo.id}"
     FileUtils.rm(path)
     Photo.delete(@photo)
 

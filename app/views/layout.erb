@@ -5,20 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
 
   </head>
   <body>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-success py-0">
         <div class="mx-auto">
-          <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="/yawdsale3.png" style="width:200px;"></a>
+          <a class="navbar-brand text-light" style="font-size:2em;"href="/"><img src="/yawdsale.png" style="width:200px;"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,7 +31,7 @@
         <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <% if Helpers.logged_in?(session) %>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link text-light" href="/users/<%= Helpers.current_user(session).id %>"><%= Helpers.current_user(session).email_address %><span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown">
@@ -44,10 +49,10 @@
               </li>
 
             <% else %>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link text-light" href="/login">Log In<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link text-light" href="/signup">Sign Up<span class="sr-only">(current)</span></a>
               </li>
             <% end %>
@@ -69,12 +74,11 @@
           <% end %>
         </div>
       </nav>
-
-    <div class="container h-100">
-      <%= yield %>
-    </div>
+      <div class="container">
+        <%= yield %>
+      </div>
     <!-- Footer -->
-    <footer class="page-footer font-small blue-grey lighten-5 mt-5">
+    <footer class="page-footer font-small blue-grey lighten-5 mt-5 w-100">
 
         <div class="bg-success">
           <div class="container">
@@ -83,7 +87,7 @@
             <div class="row py-4 d-flex align-items-center">
 
               <!-- Grid column -->
-              <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+              <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0 text-light">
                 <h6 class="mb-0">Get connected with us on social networks!</h6>
               </div>
               <!-- Grid column -->
@@ -152,7 +156,7 @@
                 <a class="dark-grey-text" href="#!">MDWordPress</a>
               </p>
               <p>
-                <a class="dark-grey-text" href="#!">BrandFlow</a>
+                <a class="dark-grey-text" href="<a href="#">Something</a>
               </p>
               <p>
                 <a class="dark-grey-text" href="#!">Bootstrap Angular</a>
@@ -208,12 +212,20 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-          <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        <div class="footer-copyright text-center text-white py-3">© 2019 Copyright:
+          <a class="text-white" href="https://mdbootstrap.com/education/bootstrap/"> Yawdsale </a>
         </div>
         <!-- Copyright -->
 
     </footer>
   <!-- Footer -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.js"></script>
+
   </body>
 </html>

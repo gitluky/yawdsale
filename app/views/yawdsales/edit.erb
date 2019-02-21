@@ -65,7 +65,7 @@
       <div class="form-group row">
         <% @yawdsale.photos.each do |photo| %>
           <div class="col-sm">
-            <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
+            <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
           </div>
         <% end %>
       </div>

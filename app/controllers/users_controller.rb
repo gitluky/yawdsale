@@ -64,7 +64,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id/edit' do
+    @current_user = Helpers.current_user(session)
 
+    erb :'/users/edit'
   end
 
   get '/logout' do

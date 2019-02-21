@@ -62,7 +62,7 @@ class YawdsalesController < ApplicationController
       @yawdsale = Yawdsale.create(title: params[:title], description: params[:description], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode], start_time: params[:start_time], end_time: params[:end_time])
       @yawdsale.user = current_user
 
-      path = "./public/#{@yawdsale.id}/photos"
+      path = "./public/yawdsales/#{@yawdsale.id}/photos"
       FileUtils.mkdir_p path
 
       if !!params[:photos]
@@ -111,7 +111,7 @@ class YawdsalesController < ApplicationController
 
   delete '/yawdsales/:id' do
     yawdsale = Yawdsale.find_by_id(params[:id])
-    path = "./public/#{yawdsale.id}"
+    path = "./public/yawdsales/#{yawdsale.id}"
     if Dir.exists?(path)
       FileUtils.remove_dir(path, force = false)
     end

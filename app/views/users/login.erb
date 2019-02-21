@@ -6,8 +6,12 @@
   </div>
 </div>
 
-<div class="mt-5">
-  <form action="/login" method="post">
+<div class="mt-5 mb-5 pb-5">
+  <!-- <div style="margin-top: 12%;">
+    </div> -->
+
+  <form class="text-center border border-light p-5" action="/login" method="post">
+    <p class="h4 mb-4">Log In</p>
     <div class="form-group row">
       <label for="email_address" class="col-2 col-form-label">Email: </label>
       <div class="col-10">
@@ -20,11 +24,13 @@
         <input class="form-control" type="password" name="password" id="password">
       </div>
     </div>
-    <div class="text-center">
-      <input type="submit" value="Log In" class="btn btn-success"></input>
-    </div>
-    </form>
-  </div>
-  <div class="col-md-5 mx-auto">
-  </div>
+
+    <input type="submit" value="Log In" class="btn btn-block btn-success my-4"></input>
+
+    <p>Not a member?
+        <a href="/signup">Sign Up</a>
+    </p>
+  </form>
+  <!-- <div style="margin-bottom: 5%;">
+    </div> -->
 </div>
