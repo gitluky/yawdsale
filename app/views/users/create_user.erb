@@ -1,69 +1,59 @@
 <div class="mt-5">
-  <div class="text-center">
-    <div>
-      <% if @message %>
-          <p style="color: red;"><%= @message %><a href="/login">Log In</a></p>
-      <% end %>
-    </div>
-  </div>
-</div>
+  <p class="text-center text-danger"><%= flash[:message] %></p>
+  <h2 class="mb-4 text-center">Create your Yawdsale Account</h2>
+  <form class="text-left pb-5" action="/users" method="post">
 
-<div class="mt-5">
-  <div class="mt-5">
-    <form class="text-center border border-light p-5" action="/users" method="post">
-      <h2 class="mb-4">Create your Yawdsale Account</h2>
-      <div class="form-group row">
-        <label for="email_address" class="col-2 col-form-label">Email: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="email_address" id="email_address">
-        </div>
+    <div class="form-group row">
+      <label for="email_address" class="col-2 col-form-label">Email: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="email_address" id="email_address">
       </div>
-      <div class="form-group row">
-        <label for="password" class="col-2 col-form-label">Password: </label>
-        <div class="col-10">
-          <input class="form-control" type="password" name="password" id="password">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-2 col-form-label">Password: </label>
+      <div class="col-10">
+        <input class="form-control" type="password" name="password" id="password">
       </div>
-      <div class="form-group row">
-        <label for="first_name" class="col-2 col-form-label">First Name: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="first_name" id="first_name">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="first_name" class="col-2 col-form-label">First Name: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="first_name" id="first_name">
       </div>
-      <div class="form-group row">
-        <label for="last_name" class="col-2 col-form-label">Last Name:</label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="last_name" id="last_name">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="last_name" class="col-2 col-form-label">Last Name:</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="last_name" id="last_name">
       </div>
-      <div class="form-group row">
-        <label for="street_address" class="col-2 col-form-label">Street Address: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="email_address" id="street_address">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="street_address" class="col-2 col-form-label">Street Address: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="street_address" id="street_address">
       </div>
-      <div class="form-group row">
-        <label for="city" class="col-2 col-form-label">City/Town: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="city" id="city">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="city" class="col-2 col-form-label">City/Town: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="city" id="city">
       </div>
-      <div class="form-group row">
-        <label for="state" class="col-2 col-form-label">State: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="state" id="state">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="state" class="col-2 col-form-label">State: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="state" id="state">
       </div>
-      <div class="form-group row">
-        <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
-        <div class="col-10">
-          <input class="form-control" type="text" name="zipcode" id="zipcode">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="zipcode" id="zipcode">
       </div>
-      <p>All fields required.</p>
-      <div class="text-center">
-        <input type="submit" value="Sign Up" class="btn btn-success"></input>
-      </div>
-    </form>
-  </div>
+    </div>
+    <div class="text-center">
+      <p class="mt-4">All fields required.</p>
+      <input type="submit" value="Sign Up" class="btn btn-success"></input>
+    </div>
+  </form>
 </div>

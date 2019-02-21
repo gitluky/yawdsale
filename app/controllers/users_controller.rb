@@ -11,7 +11,10 @@ class UsersController < ApplicationController
     user = User.find_by(email_address: params[:email_address])
     if user
       flash[:params] = params
-      flash[:message] = 'Email address is already associated to an account, enter a new email address or '
+      flash[:message] = "Email address is already associated to an account."
+      redirect '/signup'
+    elsif params.values.any? &:empty?
+      flash[:message] = 'All fields must be filled in.'
       redirect '/signup'
     else
       user = User.create(first_name: params[:first_name], last_name: params[:last_name], email_address: params[:email_address], password: params[:password], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode])
@@ -21,13 +24,17 @@ class UsersController < ApplicationController
   end
 
   patch '/users' do
-    user = Helpers.current_user(session)
-    if User.find_by(email_address: params[:email_address])
+    current_user = Helpers.current_user(session)
+    if User.find_by(email_address: params[:email_address]) && current_user.email_address != params[:email_address]
       flash[:message] = 'Email is already associated to an account.'
-      redirect "/users/#{user.id}/edit"
+      redirect "/users/#{current_user.id}/edit"
+    elsif params.values.any? &:empty?
+      flash[:message] = 'All fields must be filled in.'
+      redirect "/users/#{current_user.id}/edit"
     else
-      user = User.update(params)
-      redirect '/'
+      current_user.update(first_name: params[:first_name], last_name: params[:last_name], email_address: params[:email_address], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode])
+      flash[:message] = "Successfully updated."
+      redirect "/users/#{current_user.id}"
     end
   end
 

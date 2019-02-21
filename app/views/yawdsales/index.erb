@@ -9,12 +9,10 @@
         <% if yawdsale.end_time > DateTime.now %>
           <div class="card-body">
             <h5 class="card-title"><%= letter %>) <%= yawdsale.title if yawdsale.title %></h5>
-            <p class="card-text">
-              <p><%= yawdsale.address if yawdsale.address %></p>
-              <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
-              <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>
-              <% letter = letter.next %>
-            </p>
+            <p><%= yawdsale.address if yawdsale.address %></p>
+            <p>Begins: <%= yawdsale.start_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.start_time %></p>
+            <p>Ends: <%= yawdsale.end_time.strftime("%A, %B %d, %Y - %I:%M%P") if yawdsale.end_time %></p>
+            <% letter = letter.next %>
             <a href="/yawdsales/<%= yawdsale.id %>" class="btn btn-success">View</a>
             <% if @current_user == yawdsale.user %>
               <a href="/yawdsales/<%= yawdsale.id %>/edit" class="btn btn-outline-success">Edit Yawdsale</a>

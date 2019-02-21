@@ -10,80 +10,83 @@
     <h1>Edit your Yawdsale</h1>
 
       <div class="mt-5 text-left">
-      <form action="/yawdsales/<%= @yawdsale.id %>" method="post">
-        <input type="hidden" name="_method" value="patch"></input>
-        <div class="form-group row">
-          <label for="start_time" class="col-2 col-form-label">Starts at: </label>
-          <div class="col-10">
-            <input class="form-control" type="datetime-local" name="start_time" value="<%= @yawdsale.start_time.strftime("%Y-%m-%dT%H:%M") %>" id="start_time">
+        <form action="/yawdsales/<%= @yawdsale.id %>" method="post">
+          <input type="hidden" name="_method" value="patch"></input>
+          <div class="form-group row">
+            <label for="start_time" class="col-2 col-form-label">Starts at: </label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" name="start_time" value="<%= @yawdsale.start_time.strftime("%Y-%m-%dT%H:%M") %>" id="start_time">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="end_time" class="col-2 col-form-label">Ends at: </label>
-          <div class="col-10">
-            <input class="form-control" type="datetime-local" name="end_time" value="<%=  @yawdsale.end_time.strftime("%Y-%m-%dT%H:%M") %>" id="end_time">
+          <div class="form-group row">
+            <label for="end_time" class="col-2 col-form-label">Ends at: </label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" name="end_time" value="<%=  @yawdsale.end_time.strftime("%Y-%m-%dT%H:%M") %>" id="end_time">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="title" class="col-2 col-form-label">Title: </label>
-          <div class="col-10">
-            <input class="form-control" type="title" name="title" value="<%= @yawdsale.title %>" id="title">
+          <div class="form-group row">
+            <label for="title" class="col-2 col-form-label">Title: </label>
+            <div class="col-10">
+              <input class="form-control" type="title" name="title" value="<%= @yawdsale.title %>" id="title">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="description" class="col-2 col-form-label">Description: </label>
-          <div class="col-10">
-            <textarea class="form-control" type="textarea" name="description" rows="10" value="<%= @yawdsale.description %>" id="description"></textarea>
+          <div class="form-group row">
+            <label for="description" class="col-2 col-form-label">Description: </label>
+            <div class="col-10">
+              <textarea class="form-control" type="textarea" name="description" rows="10" id="description"><%= @yawdsale.description %></textarea>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="street_address" class="col-2 col-form-label">Street Address: </label>
-          <div class="col-10">
-            <input class="form-control" type="text" name="street_address" value="<%= @yawdsale.street_address %>" id="street_address">
+          <div class="form-group row">
+            <label for="street_address" class="col-2 col-form-label">Street Address: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="street_address" value="<%= @yawdsale.street_address %>" id="street_address">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="city" class="col-2 col-form-label">City/Town: </label>
-          <div class="col-10">
-            <input class="form-control" type="text" name="city" value="<%= @yawdsale.city %>" id="city">
+          <div class="form-group row">
+            <label for="city" class="col-2 col-form-label">City/Town: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="city" value="<%= @yawdsale.city %>" id="city">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="state" class="col-2 col-form-label">State: </label>
-          <div class="col-10">
-            <input class="form-control" type="text" name="state" value="<%= @yawdsale.state %>" id="state">
+          <div class="form-group row">
+            <label for="state" class="col-2 col-form-label">State: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="state" value="<%= @yawdsale.state %>" id="state">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
-          <div class="col-10">
-            <input class="form-control" type="text" name="zipcode" value="<%= @yawdsale.zipcode %>" id="zipcode">
+          <div class="form-group row">
+            <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="zipcode" value="<%= @yawdsale.zipcode %>" id="zipcode">
+            </div>
           </div>
-        </div>
-      </div>
-      <% if !@yawdsale.photos.empty? %>
-      <div class="form-group row">
-        <% @yawdsale.photos.each do |photo| %>
-          <div class="col-sm">
-            <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
-          </div>
-        <% end %>
-      </div>
-      <% end %>
-      <div>
-        <a href="/yawdsales/<%= @yawdsale.id %>/photos/edit" class="btn btn-outline-secondary">Update Photos</a>
-      </div>
-      <div class="row mt-2">
-        <div class="mx-auto">
-          <input type="submit" value="Update Yawdsale" class="btn btn-success"></input>
-        </div>
-      </div>
-    </form>
 
-    <form method="post" action="/yawdsales/<%= @yawdsale.id %>">
-      <input type="hidden" name="_method" value="delete"/>
-      <input type="submit" value="Delete" class="btn btn-danger"/>
-    </form>
+        <% if !@yawdsale.photos.empty? %>
+        <div class="form-group row">
+          <% @yawdsale.photos.each do |photo| %>
+            <div class="col-sm">
+              <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+
+
+
+        <div class="text-center">
+          <a href="/yawdsales/<%= @yawdsale.id %>/photos/edit" class="btn btn-outline-secondary">Update Photos</a>
+          <input type="submit" class="btn btn-success" value="Update Yawdsale"></input>
+        </div>
+      </form>
+      <div class="text-center">
+        <form method="post" action="/yawdsales/<%= @yawdsale.id %>">
+          <input type="hidden" name="_method" value="delete"/>
+          <input type="submit" class="btn btn-danger" value="Delete"></input>
+        </form>
+      </div>
+    </div>
+
+
     <div class="mt-2">
       <a href="/yawdsales/<%= @yawdsale.id %>" class="btn btn-outline-danger">Cancel</a>
     </div>

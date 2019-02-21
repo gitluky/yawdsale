@@ -3,7 +3,7 @@ class YawdsalesController < ApplicationController
   get '/yawdsales' do
     if Helpers.logged_in?(session)
       current_user = Helpers.current_user(session)
-      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=13&size=640x500"
+      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=13&size=640x500&markers=color:green%7C#{current_user.latitude},#{current_user.longitude}"
       @nearby_yawdsales = Yawdsale.near(current_user, 5, :order => "distance")
       letter = "A"
       @nearby_yawdsales.each do |yawdsale|
@@ -29,7 +29,7 @@ class YawdsalesController < ApplicationController
       when "10"
         zoom=11
     end
-    @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{address.gsub(' ','+')}&zoom=#{zoom}&size=640x500"
+    @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{address.gsub(' ','+')}&zoom=#{zoom}&size=640x500&markers=color:green%7C#{address.gsub(' ','+')}"
     @search_results = Yawdsale.near(address, params[:distance])
     letter = "A"
     @search_results.each do |yawdsale|
@@ -49,7 +49,6 @@ class YawdsalesController < ApplicationController
   end
 
   post '/yawdsales' do
-    binding.pry
     if params.values.any? &:empty?
       flash[:params] = params
       flash[:message] = "Please fill in all fields."
@@ -91,7 +90,7 @@ class YawdsalesController < ApplicationController
 
   get '/yawdsales/:id/edit' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
-
+    binding.pry
     if !@current_user == @yawdsale.user
       redirect '/yawdsale/#{@yawdsale.id}'
     end

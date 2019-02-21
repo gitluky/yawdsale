@@ -8,77 +8,113 @@
 <div class="mt-5">
   <div class="text-center">
     <h1>Post your Yawdsale</h1>
-    <p>All fields are required.</p>
+
   </div>
-  <div class="mt-5">
-  <form action="/yawdsales" method="post" enctype="multipart/form-data">
-    <div class="form-group row">
-      <label for="start_time" class="col-2 col-form-label">Starts at: </label>
-      <div class="col-10">
-        <input class="form-control" type="datetime-local" name="start_time" id="start_time">
+
+  <div class="mt-3">
+    <form class="mt-4" action="/yawdsales" method="post" enctype="multipart/form-data">
+      <div class="card text-center mt-3">
+        <div class="card-body">
+        <p>All fields are required.</p>
+          <div class="form-group row">
+            <label for="start_time" class="col-2 col-form-label">Starts at: </label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" name="start_time" id="start_time">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="end_time" class="col-2 col-form-label">Ends at: </label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" name="end_time" id="end_time">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="title" class="col-2 col-form-label">Title: </label>
+            <div class="col-10">
+              <input class="form-control" type="title" name="title" id="title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description" class="col-2 col-form-label">Description: </label>
+            <div class="col-10">
+              <textarea class="form-control" type="textarea" name="description" rows="10" id="description"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="street_address" class="col-2 col-form-label">Street Address: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="street_address" id="street_address">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="city" class="col-2 col-form-label">City/Town: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="city" id="city">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="state" class="col-2 col-form-label">State: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="state" id="state">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
+            <div class="col-10">
+              <input class="form-control" type="text" name="zipcode" id="zipcode">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="end_time" class="col-2 col-form-label">Ends at: </label>
-      <div class="col-10">
-        <input class="form-control" type="datetime-local" name="end_time" id="end_time">
+      <div class="card text-center mt-3">
+        <div class="card-body">
+          <h3>Upload Photos (optional)</h3>
+
+          <div class="input-default-wrapper mt-3">
+
+            <span class="input-group-text mb-3" id="input1">Upload</span>
+
+            <input type="file" id="file-with-current" class="input-default-js" name="photos[]">
+
+            <label class="label-for-default-js rounded-right mb-3" for="file-with-current"><span class="span-choose-file">Choose file</span>
+
+              <div class="float-right span-browse">Browse</div>
+
+            </label>
+
+          </div>
+          <div class="input-default-wrapper mt-3">
+
+            <span class="input-group-text mb-3" id="input2">Upload</span>
+
+            <input type="file" id="file-with-current2" class="input-default-js" name="photos[]">
+
+            <label class="label-for-default-js rounded-right mb-3" for="file-with-current2"><span class="span-choose-file">Choose file</span>
+
+              <div class="float-right span-browse">Browse</div>
+
+            </label>
+
+          </div>
+          <div class="input-default-wrapper mt-3">
+
+            <span class="input-group-text mb-3" id="input3">Upload</span>
+
+            <input type="file" id="file-with-current3" class="input-default-js" name="photos[]">
+
+            <label class="label-for-default-js rounded-right mb-3" for="file-with-current3"><span class="span-choose-file">Choose file</span>
+
+              <div class="float-right span-browse">Browse</div>
+
+            </label>
+
+          </div>
+          <div class="text-center mt-5">
+            <input type="submit" value="Post Yawdsale" class="btn btn-success"/>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="title" class="col-2 col-form-label">Title: </label>
-      <div class="col-10">
-        <input class="form-control" type="title" name="title" id="title">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="description" class="col-2 col-form-label">Description: </label>
-      <div class="col-10">
-        <textarea class="form-control" type="textarea" name="description" rows="10" id="description"></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="street_address" class="col-2 col-form-label">Street Address: </label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="street_address" id="street_address">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="city" class="col-2 col-form-label">City/Town: </label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="city" id="city">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="state" class="col-2 col-form-label">State: </label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="state" id="state">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="zipcode" id="zipcode">
-      </div>
-    </div>
-    <h3>Upload Photos (optional)</h3>
-    <div class="form-group row">
-      <div class="col-12">
-        <input class="form-control" type="file" name="photos[]">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-12">
-        <input class="form-control" type="file" name="photos[]">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-12">
-        <input class="form-control" type="file" name="photos[]">
-      </div>
-    </div>
-    <div class="text-center mt-5">
-      <input type="submit" value="Post Yawdsale" class="btn btn-success"/>
-    </div>
-  </form>
+    </form>
+
   </div>
 </div>
