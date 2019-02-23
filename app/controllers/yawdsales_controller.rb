@@ -3,49 +3,35 @@ class YawdsalesController < ApplicationController
   get '/yawdsales' do
     if Helpers.logged_in?(session)
       current_user = Helpers.current_user(session)
-      @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{current_user.latitude},#{current_user.longitude}&zoom=13&size=640x500&markers=color:green%7C#{current_user.latitude},#{current_user.longitude}"
-      @nearby_yawdsales = Yawdsale.near(current_user, 5, :order => "distance")
-      letter = "A"
-      @nearby_yawdsales.each do |yawdsale|
-        if yawdsale.end_time > DateTime.now
-          @map_string += "&markers=color:red%7Clabel:#{letter}%7C#{yawdsale.latitude}%2C#{yawdsale.longitude}"
-          letter = letter.next
-        end
-      end
-      @map_string += "&key=#{File.read('./../apikey.txt')}"
+      @nearby_yawdsales = Helpers.nearby_yawdsales(current_user)
+      @map_string = Helpers.static_map_for_yawdsales_near_location_object(current_user, @nearby_yawdsales)
       erb :'/yawdsales/index'
     else
-      redirect '/'
+      redirect '/login'
     end
   end
 
   get '/yawdsales/search' do
-    address = [params[:street_address], params[:city], params[:state], params[:zipcode]].compact.join(',')
-    case params[:distance]
-      when "1"
-        zoom=13
-      when "5"
-        zoom=12
-      when "10"
-        zoom=11
+    if Helpers.logged_in?(session)
+      @current_user = Helpers.current_user(session)
+      address = [params[:street_address], params[:city], params[:state], params[:zipcode]].compact.join(',')
+      @nearby_yawdsales = Helpers.nearby_yawdsales(address)
+      @map_string = Helpers.static_map_for_yawdsales_near_address(address, @nearby_yawdsales, params[:distance])
+
+      erb :'/yawdsales/search'
+    else
+      redirect '/login'
     end
-    @map_string = "https://maps.googleapis.com/maps/api/staticmap?center=#{address.gsub(' ','+')}&zoom=#{zoom}&size=640x500&markers=color:green%7C#{address.gsub(' ','+')}"
-    @search_results = Yawdsale.near(address, params[:distance])
-    letter = "A"
-    @search_results.each do |yawdsale|
-      if yawdsale.end_time > DateTime.now
-        @map_string += "&markers=color:red%7Clabel:#{letter}%7C#{yawdsale.latitude},#{yawdsale.longitude}"
-        letter = letter.next
-      end
-    end
-    @map_string += "&key=#{File.read('./../apikey.txt')}"
-    erb :'/yawdsales/search'
   end
 
   get '/yawdsales/new' do
-    @current_user = Helpers.current_user(session)
-    @params = flash[:params]
-    erb :'yawdsales/new'
+    if Helpers.logged_in?(session)
+      @current_user = Helpers.current_user(session)
+      @params = flash[:params]
+      erb :'yawdsales/new'
+    else
+      redirect '/login'
+    end
   end
 
   post '/yawdsales' do

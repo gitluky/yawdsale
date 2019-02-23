@@ -5,7 +5,7 @@
     <div class="card-footer mt-3">
     </div>
     <div class="card text-center">
-    <% @search_results.each do |yawdsale| %>
+    <% @nearby_yawdsales.each do |yawdsale| %>
       <% if yawdsale.end_time > DateTime.now %>
         <div class="card-body">
           <h5 class="card-title"><%= letter %>) <%= yawdsale.title if yawdsale.title %></h5>

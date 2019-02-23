@@ -25,7 +25,7 @@
     </div>
     <% end %>
 
-    <% if !@previous_yawdsales.empty? %>
+    <% if !@previous_yawdsales.empty? && !@active_yawdsales.empty? %>
     <div class="mt-5">
       <a href="#previous">Previous YawdSales</a>
     </div>
@@ -52,7 +52,7 @@
       <% end %>
   <% end %>
 
-  <% if !@previous_yawdsales.empty? %>
+  <% if !@previous_yawdsales.empty? && !@active_yawdsales.empty? %>
   <div class="mt-5">
     <a href="#active">Active YawdSales</a>
   </div>
