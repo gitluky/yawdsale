@@ -49,7 +49,7 @@ class YawdsalesController < ApplicationController
 
       path = "./public/yawdsales/#{@yawdsale.id}/photos"
       FileUtils.mkdir_p path
-
+      binding.pry
       if !!params[:photos]
         params[:photos].each do |photo|
           filename = photo[:filename]
@@ -69,24 +69,27 @@ class YawdsalesController < ApplicationController
   end
 
   get '/yawdsales/:id' do
-    @yawdsale = Yawdsale.find_by_id(params[:id])
-
-    erb :'/yawdsales/show_yawdsale'
+    if Helpers.logged_in?(session)
+      @yawdsale = Yawdsale.find_by_id(params[:id])
+      erb :'/yawdsales/show_yawdsale'
+    else
+      redirect '/login'
+    end
   end
 
   get '/yawdsales/:id/edit' do
+    @current_user = Helpers.current_user(session)
     @yawdsale = Yawdsale.find_by_id(params[:id])
-    binding.pry
-    if !@current_user == @yawdsale.user
-      redirect '/yawdsale/#{@yawdsale.id}'
-    end
-
-
+    if !Helpers.logged_in?(session)
+      redirect '/login'
+    elsif @current_user != @yawdsale.user
+      redirect "/yawdsales/#{@yawdsale.id}"
+    else
     erb :'/yawdsales/edit'
+    end
   end
 
   patch '/yawdsales/:id' do
-    binding.pry
     @yawdsale = Yawdsale.find_by_id(params[:id])
     @yawdsale.update(title: params[:title], description: params[:description], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode], start_time: params[:start_time], end_time: params[:end_time])
 

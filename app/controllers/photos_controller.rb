@@ -2,16 +2,25 @@ class PhotosController < ApplicationController
 
   get '/yawdsales/:id/photos/edit' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
-    @num_upload_fields = 3 - @yawdsale.photos.count
-
-    erb :'/photos/edit'
+    if Helpers.current_user(session) == @yawdsale.user
+      @num_upload_fields = 3 - @yawdsale.photos.count
+      erb :'/photos/edit'
+    elsif !Helpers.logged_in?(session)
+        redirect '/login'
+    else
+      redirect "/yawdsales/#{@yawdsale.id}"
+    end
   end
 
   get '/yawdsales/:id/photos/:photo_id' do
-    @yawdsale = Yawdsale.find_by_id(params[:id])
-    @photo = Photo.find_by_id(params[:photo_id])
+    if Helpers.logged_in?(session)
+      @yawdsale = Yawdsale.find_by_id(params[:id])
+      @photo = Photo.find_by_id(params[:photo_id])
 
-    erb :'/photos/show_photo'
+      erb :'/photos/show_photo'
+    else
+      redirect '/login'
+    end
   end
 
   post '/yawdsales/:id/photos' do

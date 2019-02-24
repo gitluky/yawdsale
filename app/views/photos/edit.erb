@@ -19,7 +19,7 @@
     <% @yawdsale.photos.each do |photo| %>
       <div class="mt-2">
         <div class="col-sm">
-          <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
+          <a href="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"><img style="width: 100%;" src="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>"></a>
         </div>
         <form class="mt-2" method="post" action="/yawdsales/<%= @yawdsale.id %>/photos/<%= photo.id %>">
           <input type="hidden" name="_method" value="delete"/>
