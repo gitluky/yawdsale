@@ -1,6 +1,7 @@
 <div class="mt-5 text-center">
-
-  <p style="color: red;"><%= flash[:message] %></p>
+  <% if @message %>
+    <div class="alert alert-danger"><%= @message %></div>
+  <% end %>
 
   <form class="text-center pb-5" action="/users" method="post">
     <input type="hidden" name="_method" value="patch"></input>

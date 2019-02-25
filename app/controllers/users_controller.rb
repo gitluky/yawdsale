@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       flash[:message] = "Email address is already associated to an account."
       redirect '/signup'
     elsif params.values.any? &:empty?
+      flash[:params] = params
       flash[:message] = 'All fields must be filled in.'
       redirect '/signup'
     else
@@ -54,6 +55,7 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id' do
+    @message = flash[:message]
     if Helpers.logged_in?(session)
       @current_user = Helpers.current_user(session)
       @user = User.find_by_id(params[:id])
@@ -67,8 +69,8 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id/edit' do
+    @message = flash[:message]
     @current_user = Helpers.current_user(session)
-    binding.pry
     if @current_user.id == params[:id].to_i
       erb :'/users/edit'
     else

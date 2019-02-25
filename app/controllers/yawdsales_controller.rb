@@ -5,6 +5,7 @@ class YawdsalesController < ApplicationController
       current_user = Helpers.current_user(session)
       @nearby_yawdsales = Helpers.nearby_yawdsales(current_user)
       @map_string = Helpers.static_map_for_yawdsales_near_location_object(current_user, @nearby_yawdsales)
+      flash[:search_message] = "#{@nearby_yawdsales.count} YawdSales have been found."
       erb :'/yawdsales/index'
     else
       redirect '/login'
@@ -17,7 +18,7 @@ class YawdsalesController < ApplicationController
       address = [params[:street_address], params[:city], params[:state], params[:zipcode]].compact.join(',')
       @nearby_yawdsales = Helpers.nearby_yawdsales(address)
       @map_string = Helpers.static_map_for_yawdsales_near_address(address, @nearby_yawdsales, params[:distance])
-
+      flash[:search_message] = "#{@nearby_yawdsales.count} YawdSales have been found."
       erb :'/yawdsales/search'
     else
       redirect '/login'
@@ -25,6 +26,7 @@ class YawdsalesController < ApplicationController
   end
 
   get '/yawdsales/new' do
+    @message = flash[:message]
     if Helpers.logged_in?(session)
       @current_user = Helpers.current_user(session)
       @params = flash[:params]
@@ -49,7 +51,6 @@ class YawdsalesController < ApplicationController
 
       path = "./public/yawdsales/#{@yawdsale.id}/photos"
       FileUtils.mkdir_p path
-      binding.pry
       if !!params[:photos]
         params[:photos].each do |photo|
           filename = photo[:filename]
@@ -62,13 +63,14 @@ class YawdsalesController < ApplicationController
 
         end
       end
-
+      flash[:message] = "Success! YawdSale has been created."
       @yawdsale.save
       redirect "/yawdsales/#{@yawdsale.id}"
     end
   end
 
   get '/yawdsales/:id' do
+    @message = flash[:message]
     if Helpers.logged_in?(session)
       @yawdsale = Yawdsale.find_by_id(params[:id])
       erb :'/yawdsales/show_yawdsale'
@@ -92,7 +94,7 @@ class YawdsalesController < ApplicationController
   patch '/yawdsales/:id' do
     @yawdsale = Yawdsale.find_by_id(params[:id])
     @yawdsale.update(title: params[:title], description: params[:description], street_address: params[:street_address], city: params[:city], state: params[:state], zipcode: params[:zipcode], start_time: params[:start_time], end_time: params[:end_time])
-
+    flash[:message] = "Success! YawdSale has been updated."
     redirect "/yawdsales/#{@yawdsale.id}"
   end
 
@@ -110,11 +112,5 @@ class YawdsalesController < ApplicationController
       redirect "/yawdsales/#{params[:id]}"
     end
   end
-
-
-
-
-
-
 
 end

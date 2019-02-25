@@ -38,7 +38,7 @@ class PhotosController < ApplicationController
 
       File.write("#{path}/#{new_photo.id}", file.read)
     end
-
+    flash[:message] = "Success! Photos have been updated."
     redirect "/yawdsales/#{@yawdsale.id}"
   end
 
