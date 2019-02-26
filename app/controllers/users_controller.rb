@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    @message = flash[:message]
     erb :'users/login'
   end
 
@@ -69,12 +70,16 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id/edit' do
-    @message = flash[:message]
-    @current_user = Helpers.current_user(session)
-    if @current_user.id == params[:id].to_i
-      erb :'/users/edit'
+    if Helpers.logged_in?(session)
+      @message = flash[:message]
+      @current_user = Helpers.current_user(session)
+      if @current_user.id == params[:id].to_i
+        erb :'/users/edit'
+      else
+        redirect "/users/#{params[:id]}"
+      end
     else
-      redirect "/users/#{params[:id]}"
+      redirect '/login'
     end
   end
 

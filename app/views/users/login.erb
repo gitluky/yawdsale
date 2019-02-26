@@ -1,11 +1,12 @@
+<% if @message %>
 <div class="mt-5">
   <div class="text-center">
     <div>
-        <p style="color: red;"><%= flash[:message]%></p>
+        <div class="alert alert-danger"><%= @message %></div>
     </div>
   </div>
 </div>
-
+<% end %>
 <div class="mt-5 mb-5 pb-5">
   <!-- <div style="margin-top: 12%;">
     </div> -->

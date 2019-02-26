@@ -1,14 +1,16 @@
 class PhotosController < ApplicationController
 
   get '/yawdsales/:id/photos/edit' do
-    @yawdsale = Yawdsale.find_by_id(params[:id])
-    if Helpers.current_user(session) == @yawdsale.user
-      @num_upload_fields = 3 - @yawdsale.photos.count
-      erb :'/photos/edit'
-    elsif !Helpers.logged_in?(session)
-        redirect '/login'
+    if Helpers.logged_in?(session)
+      @yawdsale = Yawdsale.find_by_id(params[:id])
+      if Helpers.current_user(session) == @yawdsale.user
+        @num_upload_fields = 3 - @yawdsale.photos.count
+        erb :'/photos/edit'
+      else
+        redirect "/yawdsales/#{@yawdsale.id}"
+      end
     else
-      redirect "/yawdsales/#{@yawdsale.id}"
+      redirect '/login'
     end
   end
 
@@ -52,6 +54,5 @@ class PhotosController < ApplicationController
 
     redirect "/yawdsales/#{@yawdsale.id}/photos/edit"
   end
-
 
 end
