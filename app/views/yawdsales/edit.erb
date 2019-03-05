@@ -27,37 +27,37 @@
           <div class="form-group row">
             <label for="title" class="col-2 col-form-label">Title: </label>
             <div class="col-10">
-              <input class="form-control" type="title" name="title" value="<%= @yawdsale.title %>" id="title">
+              <input class="form-control" type="title" name="title" value="<%= @yawdsale.title %>" id="title" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="description" class="col-2 col-form-label">Description: </label>
             <div class="col-10">
-              <textarea class="form-control" type="textarea" name="description" rows="10" id="description"><%= @yawdsale.description %></textarea>
+              <textarea class="form-control" type="textarea" name="description" rows="10" id="description" required><%= @yawdsale.description %></textarea>
             </div>
           </div>
           <div class="form-group row">
             <label for="street_address" class="col-2 col-form-label">Street Address: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="street_address" value="<%= @yawdsale.street_address %>" id="street_address">
+              <input class="form-control" type="text" name="street_address" value="<%= @yawdsale.street_address %>" id="street_address" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="city" class="col-2 col-form-label">City/Town: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="city" value="<%= @yawdsale.city %>" id="city">
+              <input class="form-control" type="text" name="city" value="<%= @yawdsale.city %>" id="city" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="state" class="col-2 col-form-label">State: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="state" value="<%= @yawdsale.state %>" id="state">
+              <input class="form-control" type="text" name="state" value="<%= @yawdsale.state %>" id="state" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="zipcode" value="<%= @yawdsale.zipcode %>" id="zipcode">
+              <input class="form-control" type="text" name="zipcode" value="<%= @yawdsale.zipcode %>" id="zipcode" required>
             </div>
           </div>
 

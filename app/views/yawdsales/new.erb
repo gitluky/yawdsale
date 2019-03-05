@@ -28,37 +28,37 @@
           <div class="form-group row">
             <label for="title" class="col-2 col-form-label">Title: </label>
             <div class="col-10">
-              <input class="form-control" type="title" name="title" id="title" value="<%= @params[:title] if @params %>">
+              <input class="form-control" type="title" name="title" id="title" value="<%= @params[:title] if @params %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="description" class="col-2 col-form-label">Description: </label>
             <div class="col-10">
-              <textarea class="form-control" type="textarea" name="description" rows="10" id="description"><%= @params[:description] if @params %></textarea>
+              <textarea class="form-control" type="textarea" name="description" rows="10" id="description" required><%= @params[:description] if @params %></textarea>
             </div>
           </div>
           <div class="form-group row">
             <label for="street_address" class="col-2 col-form-label">Street Address: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="street_address" id="street_address" value="<%= @params[:street_address] if @params %>">
+              <input class="form-control" type="text" name="street_address" id="street_address" value="<%= @params[:street_address] if @params %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="city" class="col-2 col-form-label">City/Town: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="city" id="city" value="<%= @params[:city] if @params %>">
+              <input class="form-control" type="text" name="city" id="city" value="<%= @params[:city] if @params %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="state" class="col-2 col-form-label">State: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="state" id="state" value="<%= @params[:state] if @params %>">
+              <input class="form-control" type="text" name="state" id="state" value="<%= @params[:state] if @params %>" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="zipcode" class="col-2 col-form-label">Zip Code: </label>
             <div class="col-10">
-              <input class="form-control" type="text" name="zipcode" id="zipcode" value="<%= @params[:zipcode] if @params %>">
+              <input class="form-control" type="text" name="zipcode" id="zipcode" value="<%= @params[:zipcode] if @params %>" required>
             </div>
         </div>
       <div class="border border-light p-5 text-center mt-4">
