@@ -1,37 +1,27 @@
 YawdSale
 
-Locates Yawdsales (yardsales) based on location entered into the search criteria.
+Users can create YawdSale accounts, post up their own YawdSales (yardsales), find nearby Yawdsales based on the address in their profile, as well as search for YawdSales based on location data entered.
 
 Pre-requisites:
 
 Ruby 2.4.0 or higher
 
 Installation
-Add this line to your application's Gemfile:
-
-gem 'yawdsale'
-And then execute:
-
-$ bundle
-Or install it yourself as:
-
-$ gem install 'yawdsale'
-
-Usage
-Simply enter the command below to run the application:
-
-$ yawdsale
-
-Development
-After checking out the repo, run bin/setup to install dependencies. Then, run rake spec to run the tests. You can also run bin/console for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run bundle exec rake install. To release a new version, update the version number in version.rb, and then run bundle exec rake release, which will create a git tag for the version, push git commits and tags, and push the .gem file to rubygems.org.
+1) Clone this repository and run $'bundle install' to get the required gems listed in the Gemfile.
+2) Run $rake db:migrate to set up the database.
+  For mock data:
+  a) Adjust the data in the seed file:
+    - update User data
+    - update Yawdsale data
+  b) Run $rake db:seed
+3) Run shotgun to host the web app on your local machine
+4) Open provided address in browser
 
 Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/gitluky/yawdsale. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 License
-The gem is available as open source under the terms of the MIT License.
+Available as open source under the terms of the MIT License.
 
 Code of Conduct
 Everyone interacting in the yawdsale project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
