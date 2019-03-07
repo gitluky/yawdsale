@@ -10,8 +10,8 @@ class Helpers
     !!session[:user_id]
   end
 
-  def self.nearby_yawdsales(location_object)
-    result = Yawdsale.near(location_object, 5, :order => "distance")
+  def self.nearby_yawdsales(location_object, distance)
+    result = Yawdsale.near(location_object, distance, :order => "distance")
     nearby_yawdsales = result.select {|yawdsale| yawdsale.end_time > DateTime.now}
   end
 

@@ -11,6 +11,7 @@
           </div>
         <% end %>
         <input type="submit" value="Upload Photo(s)" class="btn btn-success"/>
+        <a href="/yawdsales/<%= @yawdsale.id %>" class="btn btn-outline-danger">Cancel</a>
       </form>
     <% else %>
       <p>Maximum number of 3 photos reached. Delete a photo to upload another.</p>

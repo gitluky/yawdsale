@@ -7,6 +7,7 @@
   <div class="text-center">
     <% if Helpers.current_user(session) == @yawdsale.user %>
       <a href="/yawdsales/<%= @yawdsale.id %>/edit" class="btn btn-outline-success">Edit Yawdsale</a>
+      <a href="/yawdsales/<%= @yawdsale.id %>/photos/edit" class="btn btn-outline-secondary">Update Photos</a>
     <% end %>
     <div class="card border-light mt-4">
       <div class="card-body">

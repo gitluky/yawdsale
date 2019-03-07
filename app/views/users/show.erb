@@ -18,11 +18,12 @@
     <% else %>
     <h1><%= @user.email_address %>'s Profile</h1>
     <div class="card text-center">
-      <div class="card-body mt-2">
-        <p><%= @user.first_name if @user.first_name %></p>
-        <p><%= @user.email_address if @user.email_address %></p>
-        <p><%= @user.city if @user.city %></p>
-        <p><%= @user.state  if @user.state %></p>
+      <div class="mx-auto">
+      <div class="card-body mt-2 text-left">
+        <p>Name: <%= @user.first_name if @user.first_name %></p>
+        <p>Email: <%= @user.email_address if @user.email_address %></p>
+        <p>Location: <%= @user.city if @user.city %>, <%= @user.state  if @user.state %></p>
+      </div>
       </div>
     </div>
     <% end %>

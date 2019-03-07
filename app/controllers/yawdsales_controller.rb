@@ -2,9 +2,9 @@ class YawdsalesController < ApplicationController
 
   get '/yawdsales' do
     if Helpers.logged_in?(session)
-      current_user = Helpers.current_user(session)
-      @nearby_yawdsales = Helpers.nearby_yawdsales(current_user)
-      @map_string = Helpers.static_map_for_yawdsales_near_location_object(current_user, @nearby_yawdsales)
+      @current_user = Helpers.current_user(session)
+      @nearby_yawdsales = Helpers.nearby_yawdsales(@current_user, 1)
+      @map_string = Helpers.static_map_for_yawdsales_near_location_object(@current_user, @nearby_yawdsales)
       flash[:search_message] = "#{@nearby_yawdsales.count} YawdSales have been found."
       erb :'/yawdsales/index'
     else
@@ -16,7 +16,7 @@ class YawdsalesController < ApplicationController
     if Helpers.logged_in?(session)
       @current_user = Helpers.current_user(session)
       address = [params[:street_address], params[:city], params[:state], params[:zipcode]].compact.join(',')
-      @nearby_yawdsales = Helpers.nearby_yawdsales(address)
+      @nearby_yawdsales = Helpers.nearby_yawdsales(address, params[:distance])
       @map_string = Helpers.static_map_for_yawdsales_near_address(address, @nearby_yawdsales, params[:distance])
       flash[:search_message] = "#{@nearby_yawdsales.count} YawdSales have been found."
       erb :'/yawdsales/search'
