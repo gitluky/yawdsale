@@ -16,6 +16,9 @@ class YawdsalesController < ApplicationController
     if Helpers.logged_in?(session)
       @current_user = Helpers.current_user(session)
       address = [params[:street_address], params[:city], params[:state], params[:zipcode]].compact.join(',')
+      if params[:city] == "" || params[:state] == ""
+        redirect '/'
+      end
       @nearby_yawdsales = Helpers.nearby_yawdsales(address, params[:distance])
       @map_string = Helpers.static_map_for_yawdsales_near_address(address, @nearby_yawdsales, params[:distance])
       flash[:search_message] = "#{@nearby_yawdsales.count} YawdSales have been found."

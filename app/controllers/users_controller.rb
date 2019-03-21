@@ -53,8 +53,8 @@ class UsersController < ApplicationController
     if Helpers.logged_in?(session)
       @current_user = Helpers.current_user(session)
       @user = User.find_by_id(params[:id])
-      @active_yawdsales = @user.yawdsales.where("end_time > ?", DateTime.now)
-      @previous_yawdsales = @user.yawdsales.where("end_time < ?", DateTime.now)
+      @active_yawdsales = @user.yawdsales.where("end_time > ?", DateTime.now.utc)
+      @previous_yawdsales = @user.yawdsales.where("end_time < ?", DateTime.now.utc)
 
       erb :'/users/show'
     else
