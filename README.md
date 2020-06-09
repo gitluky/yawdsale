@@ -2,6 +2,8 @@ YawdSale
 
 Users can create YawdSale accounts, post up their own YawdSales (yardsales), find nearby Yawdsales based on the address in their profile, as well as search for YawdSales based on location data entered.
 
+Demo: https://vimeo.com/322158667
+
 Pre-requisites:
 
 Ruby 2.4.0 or higher
